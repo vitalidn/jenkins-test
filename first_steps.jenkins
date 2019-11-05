@@ -16,11 +16,6 @@ pipeline {
                 sh 'ssh root@ub1 \'hostname\''
             }
         }
-        stage("Second step") {
-            steps {
-                sh 'ssh root@ub1 \'uptime\''
-            }
-        }
     }
 }
 // Check cent7 (172.16.62.136)
@@ -38,11 +33,6 @@ pipeline {
         stage("First step") {
             steps {
                 sh 'ssh root@cent7 \'hostname\''
-            }
-        }
-        stage("Second step") {
-            steps {
-                sh 'ssh root@cent7 \'uptime\''
             }
         }
     }
