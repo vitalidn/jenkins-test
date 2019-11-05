@@ -1,5 +1,4 @@
 #!groovy
-// Check ub1 (172.16.62.135)
 properties([disableConcurrentBuilds()])
 
 pipeline {
@@ -16,25 +15,19 @@ pipeline {
                 sh 'ssh root@ub1 \'hostname\''
             }
         }
-    }
-}
-
-
-// Check cent7 (172.16.62.136)
-properties([disableConcurrentBuilds()])
-
-pipeline {
-    agent {
-        label 'master'
+        stage("Second step") {
+            steps {
+                sh 'ssh root@ub1 \'uptime\''
+            }
         }
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
-        timestamps()
-    }
-    stages {
-        stage("First step") {
+        stage("Three step") {
             steps {
                 sh 'ssh root@cent7 \'hostname\''
+            }
+        }
+        stage("Four step") {
+            steps {
+                sh 'ssh root@cent7 \'uptime\''
             }
         }
     }
