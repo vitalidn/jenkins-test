@@ -18,6 +18,8 @@ pipeline {
         }
     }
 }
+
+
 // Check cent7 (172.16.62.136)
 properties([disableConcurrentBuilds()])
 
