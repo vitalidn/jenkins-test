@@ -1,0 +1,50 @@
+#!groovy
+// Check ub1 (172.16.62.135)
+properties([disableConcurrentBuilds()])
+
+pipeline {
+    agent { 
+        label 'master'
+        }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+        timestamps()
+    }
+    stages {
+        stage("First step") {
+            steps {
+                sh 'ssh root@ub1 \'hostname\''
+            }
+        }
+        stage("Second step") {
+            steps {
+                sh 'ssh root@ub1 \'uptime\''
+            }
+        }
+    }
+}
+// Check cent7 (172.16.62.136)
+properties([disableConcurrentBuilds()])
+
+pipeline {
+    agent {
+        label 'master'
+        }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+        timestamps()
+    }
+    stages {
+        stage("First step") {
+            steps {
+                sh 'ssh root@cent7 \'hostname\''
+            }
+        }
+        stage("Second step") {
+            steps {
+                sh 'ssh root@cent7 \'uptime\''
+            }
+        }
+    }
+}
+
