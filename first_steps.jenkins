@@ -10,22 +10,23 @@ pipeline {
         timestamps()
     }
     stages {
-       stage("================ First step (lovalhost) ================") {
+       stage("---------------- First step (localhost) --------------") {
             steps {
+                sh '\'hostname\''
                 sh '\'hostname &&\
-                uptime &&\
-                uname -a &&\
-                lscpu  | grep "^CPU(s)" &&\
-                grep -i memtotal /proc/meminfo \''
+                    uptime &&\
+                    uname -a &&\
+                    lscpu  | grep "^CPU(s)" &&\
+                    grep -i memtotal /proc/meminfo \''
             }
        } 
       stage("================ Second step (Ubuntu) ================") {
             steps {
                 sh 'ssh root@ub1 \'hostname &&\
-                uptime &&\
-                uname -a &&\
-                lscpu  | grep "^CPU(s)" &&\
-                grep -i memtotal /proc/meminfo \''
+                    uptime &&\
+                    uname -a &&\
+                    lscpu  | grep "^CPU(s)" &&\
+                    grep -i memtotal /proc/meminfo \''
             }
        } 
       stage("================ Three step (Centos) ================") {
