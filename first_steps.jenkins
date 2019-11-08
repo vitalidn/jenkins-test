@@ -12,12 +12,11 @@ pipeline {
     stages {
        stage("---------------- First step (localhost) --------------") {
             steps {
-                sh '\'hostname\''
                 sh '\'hostname &&\
                     uptime &&\
                     uname -a &&\
                     lscpu  | grep "^CPU(s)" &&\
-                    grep -i memtotal /proc/meminfo \''
+                    grep -i memtotal /proc/meminfo\''
             }
        } 
       stage("================ Second step (Ubuntu) ================") {
@@ -26,7 +25,7 @@ pipeline {
                     uptime &&\
                     uname -a &&\
                     lscpu  | grep "^CPU(s)" &&\
-                    grep -i memtotal /proc/meminfo \''
+                    grep -i memtotal /proc/meminfo\''
             }
        } 
       stage("================ Three step (Centos) ================") {
@@ -35,7 +34,7 @@ pipeline {
                 uptime &&\
                 uname -a &&\
                 lscpu  | grep "^CPU(s)" &&\
-                grep -i memtotal /proc/meminfo \''
+                grep -i memtotal /proc/meminfo\''
             }
        } 
     }
