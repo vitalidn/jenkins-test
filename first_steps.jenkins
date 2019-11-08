@@ -14,10 +14,7 @@ pipeline {
             steps {
                 sh '\'hostname\''
                 sh '\'uname\''
-                sh '\'lscpu | grep "^CPU(s)" \''
-                sh '\'grep -i memtotal /proc/meminfo\''
-                
-            }
+             }
        }   
       stage("================ Second step (Ubuntu) ================") {
             steps {
