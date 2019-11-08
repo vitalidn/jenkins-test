@@ -12,10 +12,10 @@ pipeline {
     stages {
        stage("---------------- First step (localhost) --------------") {
             steps {
-                sh '\'hostname'\'
-                sh '\'uname -a'\'
-                sh '\'lscpu | grep "^CPU(s)"'\'
-                sh '\'grep -i memtotal /proc/meminfo'\'
+                sh '\'hostname\''
+                sh '\'uname -a\''
+                sh '\'lscpu | grep "^CPU(s)"\''
+                sh '\'grep -i memtotal /proc/meminfo\''
                 
             }
        } 
