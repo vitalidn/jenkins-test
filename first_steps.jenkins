@@ -10,26 +10,12 @@ pipeline {
         timestamps()
     }
     stages {
-         
-        stage("================ First step (Ubuntu) ================") {
-            steps {
-                sh 'ssh root@ub1 "
-                    hostname &&
-                    uptime &&
-                    uname -a &&
-                    lscpu  | grep \"^CPU(s)\" &&
-                    grep -i memtotal /proc/meminfo" '
-            }
-        }
         stage("================ Second step (Centos) ================") {
             steps {
-                sh 'ssh root@cent7 \'hostname\''
-                sh 'ssh root@cent7 \'uptime\''
-                sh 'ssh root@cent7 \'uname -a\''
-                sh 'ssh root@cent7 \' lscpu  | grep "^CPU(s)"\''
-                sh 'ssh root@cent7 \'grep -i memtotal /proc/meminfo\''
+                sh 'ssh root@cent7 \'hostname && uptime && uname -a && lscpu  | grep "^CPU(s)" && grep -i memtotal /proc/meminfo \''
             }
         } 
+        
     }
 }
 
