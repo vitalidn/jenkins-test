@@ -18,13 +18,13 @@ pipeline {
         }
         stage("================ First step (Ubuntu) ================") {
             steps {
-                sh 'ssh root@ub1 << EOF
-                    \'hostname\'
-                    \'uptime\'
-                    \'uname -a\'
-                    \'lscpu  | grep "^CPU(s)"\'
-                    \'grep -i memtotal /proc/meminfo\'
-                    EOF '
+                sh "ssh root@ub1 << EOF
+                    hostname
+                    uptime
+                    uname -a
+                    lscpu  | grep \"^CPU(s)\"
+                    grep -i memtotal /proc/meminfo
+                    EOF "
             }
         }
         stage("================ Second step (Centos) ================") {
