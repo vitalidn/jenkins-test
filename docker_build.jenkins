@@ -12,29 +12,29 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("docker login") {
+        stage("Docker Login") {
             steps {
-                echo " ============== docker login =================="
-                withCredentials([usernamePassword(credentialsId: 'dockerhub_vsavlukhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                echo " ============== Docker Login =================="
+                withCredentials([usernamePassword(credentialsId: 'dockerhub_vitalidn', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh """
                     docker login -u $USERNAME -p $PASSWORD
                     """
                 }
             }
         }
-        stage("create docker image") {
+        stage("Create Docker Image") {
             steps {
-                echo " ============== start building image =================="
+                echo " ============== Start Building Image =================="
                 dir ('docker/toolbox') {
-                	sh 'docker build -t vsavluk/toolbox:latest . '
+                	sh 'docker build -t vitalidn/toolbox:latest . '
                 }
             }
         }
-        stage("docker push") {
+        stage("Docker Push") {
             steps {
-                echo " ============== start pushing image =================="
+                echo " ============== Start Pushing Image =================="
                 sh '''
-                docker push vsavluk/toolbox:latest
+                docker push vitalidn/toolbox:latest
                 '''
             }
         }
