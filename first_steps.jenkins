@@ -10,11 +10,11 @@ pipeline {
         timestamps()
     }
     stages {
-       stage("---------------- First step (localhost) --------------") {
+       stage("============== First step (localhost) ===============") {
             steps {
                 sh '\'hostname\''
                 sh '\'uname\''
-                sh '\'lscpu | grep "^CPU(s)"\''
+                sh '\'lscpu | grep \"^CPU(s)\"\''
                 sh '\'grep -i memtotal /proc/meminfo\''
                 
             }
