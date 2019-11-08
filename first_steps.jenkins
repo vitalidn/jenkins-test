@@ -10,6 +10,12 @@ pipeline {
         timestamps()
     }
     stages {
+        stage("================ Zero step  ================") {
+            steps {
+                sh 'ssh root@ub1 \'hostname\''
+                sh 'ssh root@cent7 \'hostname\''
+            }
+        }
         stage("================ First step (Ubuntu) ================") {
             steps {
                 sh 'ssh root@ub1 \'hostname\''
