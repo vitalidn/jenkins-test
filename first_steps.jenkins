@@ -19,26 +19,7 @@ pipeline {
                 sh 'ssh root@ub1 \'hostname\''
            }
         }
-        stage("================ First step (Ubuntu) ================") {
-            steps {
-                sh 'ssh root@ub1 \'<< EOF
-                    hostname
-                    uptime
-                    uname -a
-                    grep -i memtotal /proc/meminfo\'
-                    EOF'
-            }
-        }
-        stage("================ Second step (Centos) ================") {
-            steps {
-                sh 'ssh root@cent7 << EOF
-                    \'hostname\'
-                    \'uptime\'
-                    uname -a
-                    grep -i memtotal /proc/meminfo
-                    EOF'
-            }
-        }
+        
           
     }
 }
