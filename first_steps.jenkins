@@ -10,26 +10,27 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("First step") {
+        stage("================ First step (Ubuntu) ================") {
             steps {
-                sh 'ssh root@ub1 \'hostname\''
+                sh 'ssh root@ub1 << EOF
+                    \'hostname\'
+                    \'uptime\'
+                    uname -a
+                    grep -i memtotal /proc/meminfo
+                    EOF'
             }
         }
-        stage("Second step") {
+        stage("================ Second step (Centos) ================") {
             steps {
-                sh 'ssh root@ub1 \'uptime\''
+                sh 'ssh root@cent7 << EOF
+                    \'hostname\'
+                    \'uptime\'
+                    uname -a
+                    grep -i memtotal /proc/meminfo
+                    EOF'
             }
         }
-        stage("Three step") {
-            steps {
-                sh 'ssh root@cent7 \'hostname\''
-            }
-        }
-        stage("Four step") {
-            steps {
-                sh 'ssh root@cent7 \'uptime\''
-            }
-        }
+          
     }
 }
 
