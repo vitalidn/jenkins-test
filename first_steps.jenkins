@@ -13,10 +13,10 @@ pipeline {
         stage("================ First step (Ubuntu) ================") {
             steps {
                 sh 'ssh root@ub1 << EOF
-                    \'hostname\'
-                    \'uptime\'
-                    \'uname -a\'
-                    \'grep -i memtotal /proc/meminfo\'
+                    hostname
+                    uptime
+                    uname -a
+                    grep -i memtotal /proc/meminfo
                     EOF'
             }
         }
