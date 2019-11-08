@@ -12,9 +12,9 @@ pipeline {
     stages {
        stage("---------------- First step (localhost) --------------") {
             steps {
-                sh '\'hostname '\'
-                sh '\'uname -a '\'
-                sh '\'lscpu  | grep "^CPU(s)"'\'
+                sh '\'hostname'\'
+                sh '\'uname -a'\'
+                sh '\'lscpu | grep "^CPU(s)"'\'
                 sh '\'grep -i memtotal /proc/meminfo'\'
                 
             }
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 sh 'ssh root@ub1 \'hostname &&\
                     uname -a &&\
-                    lscpu  | grep "^CPU(s)" &&\
+                    lscpu | grep "^CPU(s)" &&\
                     grep -i memtotal /proc/meminfo\''
             }
        } 
@@ -31,7 +31,7 @@ pipeline {
             steps {
                 sh 'ssh root@cent7 \'hostname &&\
                     uname -a &&\
-                    lscpu  | grep "^CPU(s)" &&\
+                    lscpu | grep "^CPU(s)" &&\
                     grep -i memtotal /proc/meminfo\''
             }
        } 
