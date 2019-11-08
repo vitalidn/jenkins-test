@@ -12,31 +12,50 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("Docker Login") {
+        stage("Create Docker Image") {
+            steps {
+                echo " ============== Start Building Image =================="
+                dir ('docker/toolbox') {
+                	sh 'docker build -t vitalidn/jenkins:latest . '
+                }
+            }
+        }
+        stage("Docker Login and Push") {
             steps {
                 echo " ============== Docker Login =================="
                 withCredentials([usernamePassword(credentialsId: 'dockerhub_vitalidn', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh """
                     docker login -u $USERNAME -p $PASSWORD
                     """
-                }
-            }
-        }
-        stage("Create Docker Image") {
-            steps {
-                echo " ============== Start Building Image =================="
-                dir ('docker/toolbox') {
-                	sh 'docker build -t vitalidn/toolbox:latest . '
-                }
-            }
-        }
-        stage("Docker Push") {
-            steps {
                 echo " ============== Start Pushing Image =================="
-                sh '''
-                docker push vitalidn/toolbox:latest
-                '''
+                    sh '''
+                    docker push vitalidn/jenkins:latest
+                    '''   
+                }
             }
         }
     }
+    post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo '--------------Hello Word!!!-------------------'
+        }
+        failure {
+            echo '-----------This will run only if failed--------------'
+        }
+        unstable {
+            echo 'This will run only if the run was marked as unstable'
+        }
+        changed {
+            echo 'This will run only if the state of the Pipeline has changed'
+            echo 'For example, if the Pipeline was previously failing but is now successful'
+        }
+    }
+    
+    
+    
+    
+    
 }
