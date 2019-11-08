@@ -9,7 +9,8 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
     }
-    stage("================ First step (Ubuntu) ================") {
+    stages {
+        stage("================ First step (Ubuntu) ================") {
             steps {
                 sh 'ssh root@ub1 \'hostname\''
                 sh 'ssh root@ub1 \'uptime\''
@@ -25,8 +26,6 @@ pipeline {
                 sh 'ssh root@cent7 \'grep -i memtotal /proc/meminfo\''
             }
         }
-        
-          
     }
 }
 
