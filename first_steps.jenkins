@@ -13,7 +13,11 @@ pipeline {
         
        stage("================ Second step (Centos) ================") {
             steps {
-                sh 'ssh root@cent7 \'hostname; uptime; uname -a; lscpu  | grep "^CPU(s)"; grep -i memtotal /proc/meminfo \''
+                sh 'ssh root@cent7 \'hostname;
+                    uptime;
+                    uname -a;
+                    lscpu  | grep "^CPU(s)";
+                    grep -i memtotal /proc/meminfo \''
             }
         }
     }
