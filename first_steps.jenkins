@@ -10,7 +10,25 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("================ Second step (Centos) ================") {
+       stage("================ First step (lovalhost) ================") {
+            steps {
+                sh 'ssh root@localhost \'hostname &&\
+                uptime &&\
+                uname -a &&\
+                lscpu  | grep "^CPU(s)" &&\
+                grep -i memtotal /proc/meminfo \''
+            }
+       } 
+      stage("================ Second step (Ubuntu) ================") {
+            steps {
+                sh 'ssh root@ub1 \'hostname &&\
+                uptime &&\
+                uname -a &&\
+                lscpu  | grep "^CPU(s)" &&\
+                grep -i memtotal /proc/meminfo \''
+            }
+       } 
+      stage("================ Three step (Centos) ================") {
             steps {
                 sh 'ssh root@cent7 \'hostname &&\
                 uptime &&\
@@ -18,8 +36,7 @@ pipeline {
                 lscpu  | grep "^CPU(s)" &&\
                 grep -i memtotal /proc/meminfo \''
             }
-        } 
-        
+       } 
     }
 }
 
