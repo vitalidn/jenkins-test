@@ -12,7 +12,7 @@ pipeline {
     stages {
        stage("================ First step (lovalhost) ================") {
             steps {
-                sh 'ssh root@localhost \'hostname &&\
+                sh '\'hostname &&\
                 uptime &&\
                 uname -a &&\
                 lscpu  | grep "^CPU(s)" &&\
