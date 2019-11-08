@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo " ============== Start Building Image =================="
                 dir ('docker/toolbox') {
-                	sh 'docker build -t vitalidn/jenkins:latest . '
+                	sh 'docker build -t vitalidn/jenkins_dev:latest . '
                 }
             }
         }
@@ -29,7 +29,7 @@ pipeline {
                     """
                 echo " ============== Start Pushing Image =================="
                     sh '''
-                    docker push vitalidn/jenkins:latest
+                    docker push vitalidn/jenkins_dev:latest
                     '''   
                 }
             }
