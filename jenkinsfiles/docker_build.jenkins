@@ -40,7 +40,7 @@ pipeline {
             echo 'This will always run'
         }
         success {
-            echo '--------------Hello Word!!!-------------------'
+            echo '++++++++++++++ All Success !!! ++++++++++++++++'
         }
         failure {
             echo '-----------This will run only if failed--------------'
